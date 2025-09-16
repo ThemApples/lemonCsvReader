@@ -32,7 +32,7 @@ def filetime(filetime):
 
 #counting csv rows
 def c_rows(f_path):
-   with open(f_path, 'r', newline='') as file:
+   with open(f_path,'r', newline='') as file:
        reader = csv.reader(file)
        header = next(reader, None)
        row_count = sum(1 for row in reader)
@@ -56,6 +56,13 @@ def count_t_cells(countr,countc):
    total_c = (num_r + 1)* num_c
    return total_c
 
+#printing an overview
+def print_view(f_p):
+	with open(f_p, 'r' , newline='') as file:
+		csv_reader = csv.reader(file)
+		for row in csv_reader:
+			print(row)
+
 #This method is for displaying the data
 def displayData(file_path):
    file_mod = filetime(os.path.getmtime(file_path))
@@ -72,6 +79,7 @@ def displayData(file_path):
    print("This file contains this many columns: " + str(file_columnz))
    print("This File contains this many cells: " + str(total_cellz))
    print("Do you want an overview of the file?")
+   print_view(file_path)
 
 if file_path:
    displayData(file_path)
